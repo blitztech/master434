@@ -1030,81 +1030,6 @@ class spell_pal_judgements : public SpellScriptLoader
         }
 };
 
-// 20271 - Judgement
-/// Updated 4.3.4
-class spell_pal_judgement : public SpellScriptLoader
-{
-		 public:
-		 spell_pal_judgement() : SpellScriptLoader("spell_pal_judgement") { }
-
-			class spell_pal_judgement_SpellScript : public SpellScript
-		 {
-			PrepareSpellScript(spell_pal_judgement_SpellScript);
-
-				bool Validate(SpellInfo const* /*spellEntry*/)
-			 {
-				if (!sSpellMgr->GetSpellInfo(SPELL_PALADIN_DIVINE_PURPOSE_PROC))
-				return false;
-
-				return true;
-			 }
-
-				void SwitchSpell()
-				{
-				if(Unit* target = GetExplTargetUnit())
-				{
-				 Unit* caster = GetCaster();
-				 uint32 spellId = 0;
-
-				 // Seal of Truth and Seal of Righteousness have a dummy aura on effect 2
-				 Unit::AuraApplicationMap & sealAuras = caster->GetAppliedAuras();
-				 for (Unit::AuraApplicationMap::iterator iter = sealAuras.begin(); iter != sealAuras.end()<img src='http://wow.amgi-it.ro/public/style_emoticons/<#EMO_DIR#>/wink.png' class='bbc_emoticon' alt=';)' />
-			{	
-				 Aura* aura = iter->second->GetBase();
-				 if (aura->GetSpellInfo()->GetSpellSpecific() == SPELL_SPECIFIC_SEAL)
-			 {
-				if (AuraEffect* aureff = aura->GetEffect(2))
-				{
-				if (aureff->GetAuraType() == SPELL_AURA_DUMMY)
-			 {
-				 if (sSpellMgr->GetSpellInfo(aureff->GetAmount()))
-				 spellId = aureff->GetAmount();
-				 break;
-			 }
-				}
-				if (!spellId)
-				{
-				switch (iter->first)
-			{
-				 // Seal of Insight, Seal of Justice
-				 case SPELL_PALADIN_SEAL_OF_JUSTICE:
-				 case SPELL_PALADIN_SEAL_OF_INSIGHT:
-				 spellId = SPELL_PALADIN_JUDGEMENT_DAMAGE;
-			}
-				}
-			 break;
-			 }
-			 else
-			 ++iter;
-			 }
-			 // Cast Judgement
-			 if (spellId)
-			 caster->CastSpell(target, spellId, true);
-			 }
-			 }
-
-			 void Register()
-			 {
-			 OnCast += SpellCastFn(spell_pal_judgement_SpellScript::SwitchSpell);
-			 }
-		 };
-
-		 SpellScript* GetSpellScript() const
-		 {
-		 return new spell_pal_judgement_SpellScript();
-		 }
-};
-
 void AddSC_paladin_spell_scripts()
 	{
 		//new spell_pal_ardent_defender();
@@ -1354,5 +1279,4 @@ void AddSC_paladin_spell_scripts()
 	new spell_pal_consecration();
 	new spell_pal_selfless_healer();
 	new spell_pal_shield_of_the_righteous();
-	new spell_pal_judgement();
 }
