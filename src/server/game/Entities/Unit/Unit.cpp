@@ -6162,6 +6162,18 @@ bool Unit::HandleDummyAuraProc(Unit* victim, uint32 damage, AuraEffect* triggere
                     basepoints0 = CalculatePct(GetMaxPower(POWER_FOCUS), triggerAmount);
                     break;
                 }
+                case 355:	// T.N.T.
+                triggered_spell_id = 56453;
+                    break;
+                // Lock and Load
+                case 3579:
+                {
+                    if (!(procFlag & PROC_FLAG_DONE_PERIODIC) || !roll_chance_i(triggerAmount)) 
+                        return false;
+                    triggered_spell_id = 56453;
+                    target = this;
+                    break;
+                } 				
             }
             break;
         }
