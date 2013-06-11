@@ -1014,6 +1014,17 @@ class spell_pal_judgements : public SpellScriptLoader
                                 caster->CastSpell(caster, 87188 , true);
                    if (caster->HasAura(53557)) 
                                 caster->CastSpell(caster, 87189, true);
+                                
+									 if (Unit* caster = GetCaster())
+										{
+											int32 damage = GetHitDamage();
+											
+											damage += (caster->ToPlayer()->GetTotalAttackPowerValue(BASE_ATTACK) * 0.24) + (caster->ToPlayer()->GetBaseSpellPowerBonus() * 0.32);
+											
+											SetHitDamage(damage);
+										}	
+
+                                
                  }
             } 
 
