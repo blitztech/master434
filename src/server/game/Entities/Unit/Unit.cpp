@@ -7321,13 +7321,6 @@ bool Unit::HandleProcTriggerSpell(Unit* victim, uint32 damage, AuraEffect* trigg
                             return false;
                     }
                 }
-				          	// Vampiric Touch (Dispel)
-				            else if (spellProto->Id == 64085)
-				            {
-				                // Darkness
-				                if (AuraEffect * aurEff = GetAuraEffect(SPELL_AURA_ADD_PCT_MODIFIER, SPELLFAMILY_PRIEST, 164, 0))
-				                    AddPctN(DoneTotalMod, aurEff->GetAmount());
-				            }          
                 break;
             case SPELLFAMILY_MAGE:
                 if (auraSpellInfo->SpellIconID == 2127)     // Blazing Speed
