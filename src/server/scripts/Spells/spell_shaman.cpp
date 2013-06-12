@@ -58,7 +58,7 @@ enum ShamanSpells
     SPELL_SHAMAN_FULMINATION_TRIGGERED          = 88767,
     SPELL_SHAMAN_FULMINATION_INFO               = 95774,
 	SPELL_SHAMAN_LIGHTNING_SHIELD_PROC          = 26364,
-		SPELL_SHAMAN_UNLEASH_ELEMENTS									= 73680,
+	SPELL_SHAMAN_UNLEASH_ELEMENTS									= 73680,
 };
 
 enum ShamanSpellIcons
@@ -834,10 +834,6 @@ public:
     }
 };
 
-	
-
-	
-
     // 73680 Unleash Elements
     class spell_sha_unleash_elements : public SpellScriptLoader
     {
@@ -910,7 +906,11 @@ public:
             {
                 return new spell_sha_unleash_elements_SpellScript();
             }
-    };
+    };	
+
+	
+
+
 
 
 
@@ -935,5 +935,5 @@ void AddSC_shaman_spell_scripts()
     new spell_sha_healing_rain();
     new spell_sha_earthquake();
 	new spell_sha_fulmination();
-		new spell_sha_unleash_elements_SpellScript();
+	new spell_sha_unleash_elements();
 }
