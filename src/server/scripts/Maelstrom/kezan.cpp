@@ -20,9 +20,6 @@
 #include "SpellMgr.h"
 #include "Player.h"
 #include "Creature.h"
-#include "ScriptedCreature.h"
-#include "ScriptMgr.h"
-#include "SpellScript.h"
 
 // npc_deffiant_troll
 enum NPC_DeffiantTroll
