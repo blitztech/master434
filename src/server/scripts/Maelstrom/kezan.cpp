@@ -29,17 +29,14 @@ enum NPC_DefiantTroll
     GO_DEPOSIT 							= 195492,
 };
 
-enum Yells
-{
-    SAY_WORK_1 = -1100000,
-    SAY_WORK_2 = -1100001,
-    SAY_WORK_3 = -1100002,
-    SAY_WORK_4 = -1100003,
-    SAY_WORK_5 = -1100004,
-    SAY_WORK_6 = -1100005,
-    SAY_WORK_7 = -1100006,
-    SAY_WORK_8 = -1100007,
-};
+#define SAY_WORK_1 "Oops, break's over."
+#define SAY_WORK_2 "Don't tase me, mon!"
+#define SAY_WORK_3 "I report you to HR!"
+#define SAY_WORK_4 "Work was bettah in da Undermine!"
+#define SAY_WORK_5 "I'm going. I'm going!"
+#define SAY_WORK_6 "Sorry, mon. It won't happen again."
+#define SAY_WORK_7 "What I doin' wrong? Don't I get a lunch and two breaks a day, mon?"
+#define SAY_WORK_8 "Ouch! Dat hurt!"
 
 class npc_defiant_troll : public CreatureScript
 {
