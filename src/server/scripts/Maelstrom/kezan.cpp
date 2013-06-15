@@ -20,6 +20,10 @@
 #include "SpellMgr.h"
 #include "Player.h"
 #include "Creature.h"
+#include "ScriptedCreature.h"
+#include "ScriptMgr.h"
+#include "SpellScript.h"
+
 
 // npc_defiant_troll
 enum NPC_DefiantTroll
@@ -27,7 +31,8 @@ enum NPC_DefiantTroll
     DEFFIANT_KILL_CREDIT               = 34830,
     SPELL_LIGHTNING_VISUAL             = 66306,
     QUEST_GOOD_HELP_IS_HARD_TO_FIND    = 14069,
-    GO_DEPOSIT                         = 195492,	
+    GO_DEPOSIT                         = 195489,
+	SPELL_BUFF_SLEEP				   = 17743,	
 };
 
 #define SAY_WORK_1 "Oops, break's over."
@@ -124,23 +129,11 @@ class npc_defiant_troll : public CreatureScript
         void UpdateAI(const uint32 diff)
         {
             if (work == true)
-                me->HandleEmoteCommand(467);
-
-            if (rebuffTimer <= diff)
+                me->HandleEmoteCommand(EMOTE_ONESHOT_WORK_MINING);
+             if (RebuffTimer <= Diff)
             {
-                switch (urand(0, 2))
-                {
-                    case 0:
-                        me->HandleEmoteCommand(412);
-                        break;
-                    case 1:
-                        me->HandleEmoteCommand(10);
-                        break;
-                    case 2:
-                        me->HandleEmoteCommand(0);
-                        break;
-                }
-                rebuffTimer = 120000;                 //Rebuff agian in 2 minutes
+                DoCast(me, SPELL_BUFF_SLEEP);
+                RebuffTimer = 300000; //Rebuff agian in 5 minutes
             }
             else
                 rebuffTimer -= diff;
