@@ -21,16 +21,16 @@
 #include "Player.h"
 #include "Creature.h"
 
-// npc_deffiant_troll
-enum NPC_DeffiantTroll
+// npc_defiant_troll
+enum NPC_DefiantTroll
 {
     DEFFIANT_KILL_CREDIT               = 34830,
-    SPELL_LIGHTNING_VISUAL             = 66306,
+    SPELL_LIGHTNING_VISUAL             = 45870,
     QUEST_GOOD_HELP_IS_HARD_TO_FIND    = 14069,
-    GO_DEPOSIT                         = 195492,
+    GO_DEPOSIT                         = 195489,	
 };
-
-##define SAY_WORK_1 "Oops, break's over."
+ 
+#define SAY_WORK_1 "Oops, break's over."
 #define SAY_WORK_2 "Don't tase me, mon!"
 #define SAY_WORK_3 "I report you to HR!"
 #define SAY_WORK_4 "Work was bettah in da Undermine!"
@@ -124,11 +124,8 @@ class npc_defiant_troll : public CreatureScript
         void UpdateAI(const uint32 diff)
         {
             if (work == true)
-            {
                 me->HandleEmoteCommand(467);
-                if (rebuffTimer <= auraTimer)
-                    me->RemoveAurasDueToSpell(SPELL_LIGHTNING_VISUAL);
-            }
+
             if (rebuffTimer <= diff)
             {
                 switch (urand(0, 2))
@@ -143,14 +140,14 @@ class npc_defiant_troll : public CreatureScript
                         me->HandleEmoteCommand(0);
                         break;
                 }
-                rebuffTimer = 120000; //Rebuff again in 2 minutes
+                rebuffTimer = 120000;                 //Rebuff agian in 2 minutes
             }
             else
                 rebuffTimer -= diff;
- 
+
             if (!UpdateVictim())
                 return;
- 
+
             DoMeleeAttackIfReady();
         }
     };
