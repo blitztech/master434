@@ -124,18 +124,10 @@ class npc_defiant_troll : public CreatureScript
         void UpdateAI(const uint32 diff)
         {
             if (work == true)
-            {
                 me->HandleEmoteCommand(467);
-                if (rebuffTimer <= auraTimer)
-                    me->RemoveAurasDueToSpell(SPELL_LIGHTNING_VISUAL);
-            }
+
             if (rebuffTimer <= diff)
             {
-                // If working and timer hits 2 minutes, despawn
-                if (work == true)
-                    {
-                    me->ForcedDespawn();
-                    }
                 switch (urand(0, 2))
                 {
                     case 0:
@@ -148,14 +140,14 @@ class npc_defiant_troll : public CreatureScript
                         me->HandleEmoteCommand(0);
                         break;
                 }
-                rebuffTimer = 120000; //Rebuff again in 2 minutes
+                rebuffTimer = 120000;                 //Rebuff agian in 2 minutes
             }
             else
                 rebuffTimer -= diff;
- 
+
             if (!UpdateVictim())
                 return;
- 
+
             DoMeleeAttackIfReady();
         }
     };
