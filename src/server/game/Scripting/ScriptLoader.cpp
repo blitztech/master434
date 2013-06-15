@@ -659,6 +659,9 @@ void AddSC_shadowmoon_valley();
 void AddSC_shattrath_city();
 void AddSC_terokkar_forest();
 void AddSC_zangarmarsh();
+void AddSC_kezan();
+//Kezan
+
 
 // Events
 void AddSC_event_childrens_week();
