@@ -21,12 +21,13 @@
 #include "Player.h"
 #include "Creature.h"
 
-enum NPC_DefiantTroll
+// npc_deffiant_troll
+enum NPC_DeffiantTroll
 {
-    DEFIANT_KILL_CREDIT 				= 34830,
-    SPELL_LIGHTNING_VISUAL			 	= 66306,
-    QUEST_GOOD_HELP_IS_HARD_TO_FIND 	= 14069,
-    GO_DEPOSIT 							= 195492,
+    DEFFIANT_KILL_CREDIT               = 34830,
+    SPELL_LIGHTNING_VISUAL             = 66306,
+    QUEST_GOOD_HELP_IS_HARD_TO_FIND    = 14069,
+    GO_DEPOSIT                         = 195492,,
 };
 
 #define SAY_WORK_1 "Oops, break's over."
@@ -100,10 +101,7 @@ class npc_defiant_troll : public CreatureScript
                         me->MonsterYell(SAY_WORK_8, LANGUAGE_UNIVERSAL, 0);
                         break;
                 }
-                
                 me->RemoveAllAuras();
-                me->RemoveFlag(UNIT_NPC_FLAGS, UNIT_NPC_FLAG_GOSSIP);
-                
                 if (GameObject* Deposit = me->FindNearestGameObject(GO_DEPOSIT, 200))
                     me->GetMotionMaster()->MovePoint(1, Deposit->GetPositionX()-1, Deposit->GetPositionY(), Deposit->GetPositionZ());
             }
@@ -128,7 +126,7 @@ class npc_defiant_troll : public CreatureScript
                         me->HandleEmoteCommand(0);
                         break;
                 }
-                rebuffTimer = 120000;
+                rebuffTimer = 120000;                 //Rebuff agian in 2 minutes
             }
             else
                 rebuffTimer -= diff;
@@ -149,11 +147,7 @@ class npc_defiant_troll : public CreatureScript
             CAST_AI(npc_defiant_troll::npc_defiant_trollAI, creature->AI())->SpellHit(player, spell);
             return true;
         }
-        else
-        {
-            creature->RemoveFlag(UNIT_NPC_FLAGS, UNIT_NPC_FLAG_GOSSIP);
-            return true;
-        }
+        return false;
     }
 };
 
@@ -170,7 +164,7 @@ public:
 
         void Reset() {}
 
-        void UpdateAI(const uint32 diff)
+        void UpdateAI(const uint32 /*diff*/)
         {
             Unit* target = NULL;
             target = me->SelectNearestTarget(5.0f);
@@ -188,6 +182,6 @@ public:
 
 void AddSC_kezan()
 {
-    new npc_fourth_and_goal_target;
-    new npc_defiant_troll;
+    new npc_fourth_and_goal_target();
+    new npc_defiant_troll();
 }
