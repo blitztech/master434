@@ -27,7 +27,7 @@ enum NPC_DeffiantTroll
     DEFFIANT_KILL_CREDIT               = 34830,
     SPELL_LIGHTNING_VISUAL             = 66306,
     QUEST_GOOD_HELP_IS_HARD_TO_FIND    = 14069,
-    GO_DEPOSIT                         = 195492,,
+    GO_DEPOSIT                         = 195492,
 };
 
 #define SAY_WORK_1 "Oops, break's over."
